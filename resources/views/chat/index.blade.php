@@ -78,41 +78,62 @@
 
         </div>
 
-        <!-- USER LIST -->
-        <div class="flex-1 overflow-y-auto">
+<!-- USER LIST -->
+<div class="flex-1 overflow-y-auto">
 
-            @foreach($users as $user)
+    <!-- GROUP CHAT -->
+    <a href="{{ route('group.show',1) }}"
+       class="flex items-center gap-4 px-5 py-4 border-b bg-green-50 hover:bg-green-100 transition">
 
-            <a href="{{ route('chat.show',$user->id) }}"
-               class="flex items-center gap-4 px-5 py-4 border-b hover:bg-blue-50 transition">
+        <div class="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center text-lg">
 
-                <div class="w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold">
-
-                    {{ strtoupper(substr($user->name,0,1)) }}
-
-                </div>
-
-                <div class="flex-1">
-
-                    <div class="font-semibold">
-
-                        {{ $user->name }}
-
-                    </div>
-
-                    <div class="text-green-600 text-sm">
-
-                        ● Online
-
-                    </div>
-
-                </div>
-
-            </a>
-
-            @endforeach
+            <i class="fa-solid fa-users"></i>
 
         </div>
+
+        <div class="flex-1">
+
+            <div class="font-semibold text-gray-800">
+                Grup UTS
+            </div>
+
+            <div class="text-sm text-gray-500">
+                Semua Anggota
+            </div>
+
+        </div>
+
+    </a>
+
+    <!-- PERSONAL CHAT -->
+    @foreach($users as $user)
+
+    <a href="{{ route('chat.show',$user->id) }}"
+       class="flex items-center gap-4 px-5 py-4 border-b hover:bg-blue-50 transition">
+
+        <div class="w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold">
+
+            {{ strtoupper(substr($user->name,0,1)) }}
+
+        </div>
+
+        <div class="flex-1">
+
+            <div class="font-semibold">
+                {{ $user->name }}
+            </div>
+
+            <div class="text-green-600 text-sm">
+                ● Online
+            </div>
+
+        </div>
+
+    </a>
+
+    @endforeach
+
+</div>
 
     </div>
 

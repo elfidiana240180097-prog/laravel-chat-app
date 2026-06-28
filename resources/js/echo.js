@@ -13,6 +13,9 @@ window.Echo = new Echo({
     enabledTransports: ['ws','wss'],
 });
 
+// =======================
+// CHAT PERSONAL
+// =======================
 window.startChatListener = function(onMessage){
 
     window.Echo.private(`chat.${window.currentUser}`)
@@ -24,10 +27,23 @@ window.startChatListener = function(onMessage){
     .listen('.user.typing',(e)=>{
 
         if(window.showTyping){
-
             window.showTyping(e.sender_id);
-
         }
+
+    });
+
+}
+
+// =======================
+// CHAT GROUP
+// =======================
+window.startGroupListener = function(onMessage){
+
+    window.Echo.private(`group.${window.currentGroup}`)
+
+    .listen('.group.message.sent',(e)=>{
+
+        onMessage(e.message);
 
     });
 
